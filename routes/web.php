@@ -29,6 +29,7 @@ Route::group(['namespace' => 'User'], function(){
 
 ///Admin routes
 Route::group(['namespace' => 'admin'], function(){
+    //home admin
     Route::get('admin/home', 'HomeController@index') -> name('admin.home');
 
     ///user routes

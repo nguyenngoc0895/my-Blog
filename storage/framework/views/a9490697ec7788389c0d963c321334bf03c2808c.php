@@ -25,25 +25,25 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->  
                 <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="<?php echo e(route('post.index')); ?>" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Posts</p>
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="<?php echo e(route('category.index')); ?>" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Categories</p>
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="<?php echo e(route('tag.index')); ?>" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Tags</p>
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="<?php echo e(route('user.index')); ?>" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>User</p>
                 </a>

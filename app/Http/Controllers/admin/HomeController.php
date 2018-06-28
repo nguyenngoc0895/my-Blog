@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
         public function index()
     {
-        return 11;
+        return view('admin.layouts.admin');
     }
 
 }

@@ -1,21 +1,20 @@
-@extends('admin.layouts.admin')
-
-@section('head')
+<?php $__env->startSection('head'); ?>
             <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-@endsection
+    <link rel="stylesheet" href="<?php echo e(asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="content-wrapper">
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Create your post </h3>
             </div>
-            @include('includes.messages')
+            <?php echo $__env->make('includes.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('post.store')}}" method="POST">
-            {{ csrf_field() }}
+            <form role="form" action="<?php echo e(route('post.store')); ?>" method="POST">
+            <?php echo e(csrf_field()); ?>
+
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -91,13 +90,15 @@
             </div>
             </form>
         </div>
-        <!-- /.card -->
+                <!-- /.card -->
+
     </div>
     <!-- /.content-wrapper -->
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
-    <script src="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
-@endsection
+<?php $__env->startSection('footer'); ?>
+    <script src="<?php echo e(asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

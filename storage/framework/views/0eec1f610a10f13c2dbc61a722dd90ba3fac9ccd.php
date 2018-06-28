@@ -1,8 +1,6 @@
-@extends('user.layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     hello
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
@@ -62,12 +60,5 @@
               on July 8, 2018</p>
           </div>
           <hr>
-          {{-- <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr> --> --}}
+          
+<?php echo $__env->make('user.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

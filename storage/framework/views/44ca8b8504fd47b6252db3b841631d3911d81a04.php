@@ -1,16 +1,15 @@
-@extends('admin.layouts.admin')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="content-wrapper">
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Create your tag </h3>
             </div>
-            @include('includes.messages')
+            <?php echo $__env->make('includes.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- /.card-header -->
             <!-- form start -->
-        <form role="form" action="{{ route('tag.store')}}" method="post">
-            {{ csrf_field()}}
+        <form role="form" action="<?php echo e(route('tag.store')); ?>" method="post">
+            <?php echo e(csrf_field()); ?>
+
             <div class="card-body">
                 <div class="form-group">
                     <label for="name">Tag title</label>
@@ -28,4 +27,5 @@
             </form>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
