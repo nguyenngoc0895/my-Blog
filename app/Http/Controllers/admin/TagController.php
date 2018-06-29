@@ -15,7 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.inc.tag.showtag');
+        $tags = tag::all();
+        return view('admin.inc.tag.showtag', compact('tags'));
     }
 
     /**
@@ -42,8 +43,8 @@ class TagController extends Controller
         ]);
 
         $tag = new tag;
-        $tag -> name = $request -> name;
-        $tag -> slug = $request -> slug;
+        $tag ->name = $request ->name;
+        $tag ->slug = $request ->slug;
         $tag -> save();
 
         return redirect( route('tag.index'));

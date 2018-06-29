@@ -1,9 +1,11 @@
-<?php $__env->startSection('head'); ?>
-     <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo e(asset('admin/plugins/datatables/dataTables.bootstrap4.css')); ?>">
-<?php $__env->stopSection(); ?>
+@extends('admin.layouts.admin')
 
-<?php $__env->startSection('content'); ?>
+@section('head')
+     <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.css')}}">
+@endsection
+
+@section('content')
  <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -18,7 +20,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active">Blank Page</li>
         </ol>
-        <a class="col-lg-offset-4 btn btn-success" href="<?php echo e(route('tag.create')); ?>">Add new tag</a>
+        <a class="col-lg-offset-4 btn btn-success" href="{{ route('category.create')}}">Add new post</a>
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -40,27 +42,27 @@
             <thead>
             <tr>
                 <th>S.No</th>
-                <th>Tag Name</th>
+                <th>Category Name</th>
                 <th>Slug</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-                <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach ($categories as $category)
                     <tr>
-                        <td><?php echo e($loop->index + 1); ?></td>
-                        <td><?php echo e($tag->name); ?></td>
-                        <td><?php echo e($tag->slug); ?></td>
+                        <td>{{ $loop->index + 1}}</td>
+                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->slug }}</td>
                         <td>Edit</td>
                         <td>Delete</td>
                     </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </tbody>
             <tfoot>
             <tr>
                 <th>S.No</th>
-                <th>Tag Name</th>
+                <th>Category Name</th>
                 <th>Slug</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -82,11 +84,11 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('footer'); ?>
-    <script src="<?php echo e(asset('admin/plugins/datatables/jquery.dataTables.js')); ?>"></script>
-    <script src="<?php echo e(asset('admin/plugins/datatables/dataTables.bootstrap4.js')); ?>"></script>
+@section('footer')
+    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
     <script>
   $(function () {
     $("#example1").DataTable();
@@ -100,5 +102,4 @@
     });
   });
 </script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('admin.layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

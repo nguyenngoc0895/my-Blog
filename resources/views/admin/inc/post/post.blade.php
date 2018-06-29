@@ -88,6 +88,7 @@
             <!-- /.content -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a type="button" class="btn btn-warning" href="{{ route('post.index')}}">Back</a>
             </div>
             </form>
         </div>
@@ -100,4 +101,14 @@
 
 @section('footer')
     <script src="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+    <script>
+    $(function () {
+        $('.textarea').wysihtml5({
+            toolbar: {
+                fa: true
+            }
+        })
+    })
+
+</script>
 @endsection

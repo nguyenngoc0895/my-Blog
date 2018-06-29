@@ -34,17 +34,7 @@
 <script src="{{ asset('admin/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js')}}"></script>}
-<!-- Bootstrap WYSIHTML5 -->
-<script src="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
-<script>
-    $(function () {
-        $('.textarea').wysihtml5({
-            toolbar: {
-                fa: true
-            }
-        })
-    })
 
-</script>
+
 @section('footer')
     @show

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
+use App\Model\user\category;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.inc.category.category');
+        $categories = category::all();
+        return view('admin.inc.category.showcategory', compact('categories'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.inc.category.category');
     }
 
     /**

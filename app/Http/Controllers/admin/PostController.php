@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.inc.post.post');
+        $posts = post::all();
+        return view('admin.inc.post.showpost', compact('posts'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.inc.post.post');
     }
 
     /**
@@ -43,11 +44,11 @@ class PostController extends Controller
             'body' => 'required',
         ]);
         $post = new post;
-        $post -> title = $request -> title;
-        $post -> subtitle = $request -> subtitle;
-        $post -> slug = $request -> slug;
-        $post -> body = $request -> body;
-        $post -> save();
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        $post->save();
 
         return redirect( route('post.index'));
     }

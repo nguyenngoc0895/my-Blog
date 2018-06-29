@@ -23,6 +23,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
+            <a type="button" class="btn btn-warning" href="<?php echo e(route('tag.index')); ?>">Back</a>
             </div>
             </form>
         </div>

@@ -87,11 +87,11 @@
             <!-- /.content -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a type="button" class="btn btn-warning" href="<?php echo e(route('post.index')); ?>">Back</a>
             </div>
             </form>
         </div>
-                <!-- /.card -->
-
+        <!-- /.card -->
     </div>
     <!-- /.content-wrapper -->
     </div>
@@ -100,5 +100,15 @@
 
 <?php $__env->startSection('footer'); ?>
     <script src="<?php echo e(asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
+    <script>
+    $(function () {
+        $('.textarea').wysihtml5({
+            toolbar: {
+                fa: true
+            }
+        })
+    })
+
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

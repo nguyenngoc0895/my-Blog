@@ -20,6 +20,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active">Blank Page</li>
         </ol>
+        <a class="col-lg-offset-4 btn btn-success" href="{{ route('tag.create')}}">Add new tag</a>
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -32,92 +33,39 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Table With Full Features</h3>
+            
         </div>
+        
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>S.No</th>
+                <th>Tag Name</th>
+                <th>Slug</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Trident</td>
-                <td>Internet
-                Explorer 4.0
-                </td>
-                <td>Win 95+</td>
-                <td> 4</td>
-                <td>X</td>
-            </tr>
-            <tr>
-                <td>Trident</td>
-                <td>Internet
-                Explorer 5.0
-                </td>
-                <td>Win 95+</td>
-                <td>5</td>
-                <td>C</td>
-            </tr>
-            <tr>
-                <td>Trident</td>
-                <td>Internet
-                Explorer 5.5
-                </td>
-                <td>Win 95+</td>
-                <td>5.5</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <td>Trident</td>
-                <td>Internet
-                Explorer 6
-                </td>
-                <td>Win 98+</td>
-                <td>6</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <td>Trident</td>
-                <td>Internet Explorer 7</td>
-                <td>Win XP SP2+</td>
-                <td>7</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <td>Trident</td>
-                <td>AOL browser (AOL desktop)</td>
-                <td>Win XP</td>
-                <td>6</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.7</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.5</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-            </tr>
+                @foreach ($tags as $tag)
+                    <tr>
+                        <td>{{ $loop->index + 1}}</td>
+                        <td>{{ $tag->name }}</td>
+                        <td>{{ $tag->slug }}</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                    </tr>
+                @endforeach
             </tbody>
             <tfoot>
             <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>S.No</th>
+                <th>Tag Name</th>
+                <th>Slug</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </tfoot>
             </table>
@@ -140,4 +88,18 @@
 
 @section('footer')
     <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 @endsection
