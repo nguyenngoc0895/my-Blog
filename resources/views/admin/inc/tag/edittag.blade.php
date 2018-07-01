@@ -9,16 +9,17 @@
             @include('includes.messages')
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('category.store')}}" method="post">
+            <form role="form" action="{{ route('category.update', $category->id)}}" method="post">
                 {{ csrf_field()}}
+                {{ method_field('PUT')}}
             <div class="card-body">
                 <div class="form-group">
-                    <label for="name">Category title</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Title">
+                    <label for="name">Tag title</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Title" value="{{ $tag->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="slug">Category slug</label>
-                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug">
+                    <label for="slug">Tag slug</label>
+                    <input type="text" class="form-control" name="slug" id="slug" placeholder="slug" value="{{ $tag->slug}}">
                 </div>
             </div>
             <!-- /.card-body -->

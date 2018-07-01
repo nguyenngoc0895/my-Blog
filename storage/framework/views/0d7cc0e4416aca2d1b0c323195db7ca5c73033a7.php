@@ -52,8 +52,25 @@
                         <td><?php echo e($loop->index + 1); ?></td>
                         <td><?php echo e($tag->name); ?></td>
                         <td><?php echo e($tag->slug); ?></td>
-                        <td>Edit</td>
-                        <td>Delete</td>
+                        <td><a href="<?php echo e(route('tag.edit', $tag->id)); ?>"><ion-icon name="create"></ion-icon></span></a></td>
+                        <td>
+                            <form id="delete-form-<?php echo e($tag->id); ?>" method="post" action="<?php echo e(route('tag.destroy', $tag->id)); ?>" style="display:none">
+                                <?php echo e(csrf_field()); ?>
+
+                                <?php echo e(method_field('DELETE')); ?>
+
+                            </form>
+                            <a href="" onclick="
+                            if( confirm('Mày có chắc với quyết định của mày không?')){
+                                event.preventDefault();
+                                document.getElementById('delete-form-<?php echo e($tag->id); ?>').submit();
+                            }
+                            else{
+                                event.preventDefault();
+                            }    
+                            ">
+                            <ion-icon name="trash"></ion-icon></a> 
+                        </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
@@ -87,6 +104,7 @@
 <?php $__env->startSection('footer'); ?>
     <script src="<?php echo e(asset('admin/plugins/datatables/jquery.dataTables.js')); ?>"></script>
     <script src="<?php echo e(asset('admin/plugins/datatables/dataTables.bootstrap4.js')); ?>"></script>
+    <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
     <script>
   $(function () {
     $("#example1").DataTable();

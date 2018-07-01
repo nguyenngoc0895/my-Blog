@@ -54,8 +54,23 @@
                         <td>{{ $loop->index + 1}}</td>
                         <td>{{ $tag->name }}</td>
                         <td>{{ $tag->slug }}</td>
-                        <td>Edit</td>
-                        <td>Delete</td>
+                        <td><a href="{{ route('tag.edit', $tag->id) }}"><ion-icon name="create"></ion-icon></span></a></td>
+                        <td>
+                            <form id="delete-form-{{ $tag->id }}" method="post" action="{{ route('tag.destroy', $tag->id) }}" style="display:none">
+                                {{ csrf_field()}}
+                                {{ method_field('DELETE')}}
+                            </form>
+                            <a href="" onclick="
+                            if( confirm('Mày có chắc với quyết định của mày không?')){
+                                event.preventDefault();
+                                document.getElementById('delete-form-{{ $tag->id}}').submit();
+                            }
+                            else{
+                                event.preventDefault();
+                            }    
+                            ">
+                            <ion-icon name="trash"></ion-icon></a> 
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -89,6 +104,7 @@
 @section('footer')
     <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
     <script>
   $(function () {
     $("#example1").DataTable();

@@ -20,7 +20,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active">Blank Page</li>
         </ol>
-        <a class="col-lg-offset-4 btn btn-success" href="{{ route('category.create')}}">Add new post</a>
+        <a class="col-lg-offset-4 btn btn-success" href="{{ route('category.create')}}">Add new category </a>
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -54,8 +54,23 @@
                         <td>{{ $loop->index + 1}}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->slug }}</td>
-                        <td>Edit</td>
-                        <td>Delete</td>
+                        <td><a href="{{ route('category.edit', $category->id) }}"><ion-icon name="create"></ion-icon></span></a></td>
+                        <td>
+                            <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('category.destroy', $category->id) }}" style="display:none">
+                                {{ csrf_field()}}
+                                {{ method_field('DELETE')}}
+                            </form>
+                            <a href="" onclick="
+                            if( confirm('Mày có chắc với quyết định của mày không?')){
+                                event.preventDefault();
+                                document.getElementById('delete-form-{{ $category->id}}').submit();
+                            }
+                            else{
+                                event.preventDefault();
+                            }    
+                            ">
+                            <ion-icon name="trash"></ion-icon></a> 
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -89,6 +104,7 @@
 @section('footer')
     <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
     <script>
   $(function () {
     $("#example1").DataTable();
