@@ -1,11 +1,9 @@
-@extends('admin.layouts.admin')
-
-@section('head')
+<?php $__env->startSection('head'); ?>
      <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.css')}}">
-@endsection
+  <link rel="stylesheet" href="<?php echo e(asset('admin/plugins/datatables/dataTables.bootstrap4.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
  <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -20,7 +18,7 @@
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active">Blank Page</li>
         </ol>
-        <a class="col-lg-offset-4 btn btn-success" href="{{ route('post.create')}}">Add new post</a>
+        <a class="col-lg-offset-4 btn btn-success" href="<?php echo e(route('post.create')); ?>">Add new post</a>
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -51,23 +49,25 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>{{ $loop->index + 1}}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->subtitle }}</td>
-                        <td>{{ $post->slug }}</td>
-                        <td>{{ $post->created_at }}</td>
-                        <td><a href="{{ route('post.edit', $post->id) }}"><ion-icon name="create"></ion-icon></span></a></td>
+                        <td><?php echo e($loop->index + 1); ?></td>
+                        <td><?php echo e($post->title); ?></td>
+                        <td><?php echo e($post->subtitle); ?></td>
+                        <td><?php echo e($post->slug); ?></td>
+                        <td><?php echo e($post->created_at); ?></td>
+                        <td><a href="<?php echo e(route('post.edit', $post->id)); ?>"><ion-icon name="create"></ion-icon></span></a></td>
                         <td>
-                            <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy', $post->id) }}" style="display:none">
-                                {{ csrf_field()}}
-                                {{ method_field('DELETE')}}
+                            <form id="delete-form-<?php echo e($post->id); ?>" method="post" action="<?php echo e(route('post.destroy', $post->id)); ?>" style="display:none">
+                                <?php echo e(csrf_field()); ?>
+
+                                <?php echo e(method_field('DELETE')); ?>
+
                             </form>
                             <a href="" onclick="
                             if( confirm('Mày có chắc với quyết định của mày không?')){
                                 event.preventDefault();
-                                document.getElementById('delete-form-{{ $post->id}}').submit();
+                                document.getElementById('delete-form-<?php echo e($post->id); ?>').submit();
                             }
                             else{
                                 event.preventDefault();
@@ -76,7 +76,7 @@
                             <ion-icon name="trash"></ion-icon></a> 
                         </td>
                     </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
             <tfoot>
             <tr>
@@ -105,11 +105,11 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
-    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
-    <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+<?php $__env->startSection('footer'); ?>
+    <script src="<?php echo e(asset('admin/plugins/datatables/jquery.dataTables.js')); ?>"></script>
+    <script src="<?php echo e(asset('admin/plugins/datatables/dataTables.bootstrap4.js')); ?>"></script>
     <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
     <script>
   $(function () {
@@ -124,4 +124,5 @@
     });
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

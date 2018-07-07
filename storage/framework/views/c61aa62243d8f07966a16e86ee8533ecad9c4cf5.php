@@ -1,36 +1,36 @@
-@extends('admin.layouts.admin')
-
-@section('head')
+<?php $__env->startSection('head'); ?>
             <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')); ?>">
       <!-- Select2 -->
-    <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css')}}">
-@endsection
+    <link rel="stylesheet" href="<?php echo e(asset('admin/plugins/select2/select2.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="content-wrapper">
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Create your post </h3>
             </div>
-            @include('includes.messages')
+            <?php echo $__env->make('includes.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('post.update', $post->id)}}" method="POST">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            <form role="form" action="<?php echo e(route('post.update', $post->id)); ?>" method="POST">
+            <?php echo e(csrf_field()); ?>
+
+            <?php echo e(method_field('PUT')); ?>
+
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{{ $post->title}}">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?php echo e($post->title); ?>">
                 </div>
                 <div class="form-group">
                     <label for="subtitle">SubTitle</label>
-                    <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="SubTitle" value="{{ $post->subtitle}}">
+                    <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="SubTitle" value="<?php echo e($post->subtitle); ?>">
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug" value="{{ $post->slug}}">
+                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug" value="<?php echo e($post->slug); ?>">
                 </div>
                 <div class="form-group">
                     <label for="image">image</label>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="checkbox">
                     <label >
-                        <input type="checkbox"  name="status" @if ($post->status == 1) checked @endif>Check me out
+                        <input type="checkbox"  name="status" <?php if($post->status == 1): ?> checked <?php endif; ?>>Check me out
                     </label>
                 </div>
             </div>
@@ -55,18 +55,18 @@
             <div  class="card-body">
                 <label>Add tag</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                @foreach ($tags as $tag)
-                    <option value="{{ $tag->id}}">{{ $tag->name}}</option>
-                @endforeach
+                <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($tag->id); ?>"><?php echo e($tag->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
             <!-- add category-->
             <div class="card-body">
                 <label>Add category</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id}}">{{ $category->name}}</option>
-                @endforeach
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
                 <!-- /.form-group -->
@@ -99,7 +99,7 @@
                             <!-- /.card-header -->
                             <div class="card-body pad">
                                 <div class="mb-3">
-                                    <textarea class="textarea" placeholder="Place some text here" name="body" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->body}}</textarea>
+                                    <textarea class="textarea" placeholder="Place some text here" name="body" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo e($post->body); ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
             <!-- /.content -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a type="button" class="btn btn-warning" href="{{ route('post.index')}}">Back</a>
+                <a type="button" class="btn btn-warning" href="<?php echo e(route('post.index')); ?>">Back</a>
             </div>
             </form>
         </div>
@@ -120,10 +120,10 @@
     <!-- /.content-wrapper -->
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
  
-@section('footer')
-    <script src="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<?php $__env->startSection('footer'); ?>
+    <script src="<?php echo e(asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
     <script>
     $(function () {
         $('.textarea').wysihtml5({
@@ -135,7 +135,7 @@
     </script>
 
     <!-- Select2 -->
-    <script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
+    <script src="<?php echo e(asset('admin/plugins/select2/select2.full.min.js')); ?>"></script>
     <script>
         $(document).ready(function(){
             //Initialize Select2 Elements
@@ -143,4 +143,5 @@
         });
     </script>
     
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

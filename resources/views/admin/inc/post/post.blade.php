@@ -1,8 +1,10 @@
 @extends('admin.layouts.admin')
 
 @section('head')
-            <!-- bootstrap wysihtml5 - text editor -->
+    <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css')}}">
 @endsection
 
 @section('content')
@@ -41,12 +43,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="status" id="exampleCheck1">
-                <label class="form-check-label" for="status">Check me out</label>
+                <div class="checkbox">
+                    <label >
+                        <input type="checkbox"  name="status" >Check me out
+                    </label>
                 </div>
             </div>
             <!-- /.card-body -->
+            <div  class="card-body">
+                <label>Add tag</label>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                @foreach ($tags as $tag)
+                    <option value="{{ $tag->id}}">{{ $tag->name}}</option>
+                @endforeach
+                </select>
+            </div>
+            <!-- add category-->
+            <div class="card-body">
+                <label>Add category</label>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id}}">{{ $category->name}}</option>
+                @endforeach
+                </select>
+            </div>
                    <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
@@ -109,6 +129,13 @@
             }
         })
     })
-
-</script>
+    </script>
+    <!-- Select2 -->
+    <script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            //Initialize Select2 Elements
+            $('.select2').select2();
+        });
+    </script>
 @endsection

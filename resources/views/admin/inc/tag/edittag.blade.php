@@ -9,7 +9,7 @@
             @include('includes.messages')
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('category.update', $category->id)}}" method="post">
+            <form role="form" action="{{ route('tag.update', $tag->id)}}" method="post">
                 {{ csrf_field()}}
                 {{ method_field('PUT')}}
             <div class="card-body">
