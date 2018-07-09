@@ -25,7 +25,7 @@
 
 <body>
     @include('user.inc.topbar')
-    @include('user.inc.header')
+    
     <!-- Main Content -->
     <div class="container">
         <div class="row">

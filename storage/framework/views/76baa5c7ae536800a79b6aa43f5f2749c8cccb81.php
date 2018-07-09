@@ -44,7 +44,7 @@
                 </div>
                 <div class="checkbox">
                     <label >
-                        <input type="checkbox"  name="status" >Check me out
+                        <input type="checkbox"  name="status" value="1">publish
                     </label>
                 </div>
             </div>

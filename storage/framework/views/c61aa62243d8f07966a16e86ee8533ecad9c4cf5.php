@@ -46,7 +46,7 @@
                 </div>
                 <div class="checkbox">
                     <label >
-                        <input type="checkbox"  name="status" <?php if($post->status == 1): ?> checked <?php endif; ?>>Check me out
+                        <input type="checkbox"  name="status" value="1" <?php if($post->status == 1): ?> <?php echo e('checked'); ?> <?php endif; ?>>Publish
                     </label>
                 </div>
             </div>
@@ -56,7 +56,14 @@
                 <label>Add tag</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
                 <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($tag->id); ?>"><?php echo e($tag->name); ?></option>
+                    <option value="<?php echo e($tag->id); ?>"
+                        <?php $__currentLoopData = $post->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postTag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if( $postTag->id == $tag->id): ?>
+                                <?php echo e('selected'); ?>
+
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    ><?php echo e($tag->name); ?></option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
@@ -65,7 +72,14 @@
                 <label>Add category</label>
                 <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                    <option value="<?php echo e($category->id); ?>"
+                        <?php $__currentLoopData = $post->categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if( $postCategory->id == $category->id): ?>
+                                <?php echo e('selected'); ?>
+
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
+                    ><?php echo e($category->name); ?></option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>

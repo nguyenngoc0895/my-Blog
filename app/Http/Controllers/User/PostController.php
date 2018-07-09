@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use App\Model\user\post;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-        public function index($id)
+        public function post( post $post)
     {
-        return view('');
+        return view('user.layouts.post', compact('post'));
     }
 
 }
