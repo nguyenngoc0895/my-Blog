@@ -25,15 +25,9 @@
 
 <body>
     <?php echo $__env->make('user.inc.topbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    <?php echo $__env->make('user.inc.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
     <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="content col-md-10 col-lg-10">
-                <?php echo $__env->yieldContent('content'); ?>
-            </div>
-        </div>
-    </div>
+    <?php echo $__env->yieldContent('content'); ?>
     <?php echo $__env->make('user.inc.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </body>
 </html>

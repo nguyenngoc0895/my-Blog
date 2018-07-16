@@ -25,15 +25,9 @@
 
 <body>
     @include('user.inc.topbar')
-    
+
     <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="content col-md-10 col-lg-10">
-                @yield('content')
-            </div>
-        </div>
-    </div>
+    @yield('content')
     @include('user.inc.footer')
 </body>
 </html>

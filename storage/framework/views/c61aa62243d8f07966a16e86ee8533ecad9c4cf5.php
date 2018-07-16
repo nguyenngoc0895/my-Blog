@@ -14,119 +14,119 @@
             <?php echo $__env->make('includes.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo e(route('post.update', $post->id)); ?>" method="POST">
+            <form role="form" action="<?php echo e(route('post.update', $post->id)); ?>" method="POST" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
             <?php echo e(method_field('PUT')); ?>
 
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?php echo e($post->title); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="subtitle">SubTitle</label>
-                    <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="SubTitle" value="<?php echo e($post->subtitle); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="slug">Slug</label>
-                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug" value="<?php echo e($post->slug); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="image">image</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="image" id="image">
-                            <label class="custom-file-label" for="image">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="">Upload</span>
-                        </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?php echo e($post->title); ?>">
                     </div>
-                </div>
-                <div class="checkbox">
-                    <label >
-                        <input type="checkbox"  name="status" value="1" <?php if($post->status == 1): ?> <?php echo e('checked'); ?> <?php endif; ?>>Publish
-                    </label>
-                </div>
-            </div>
-            <!-- /.card-body -->
-            <!-- add tag-->
-            <div  class="card-body">
-                <label>Add tag</label>
-                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($tag->id); ?>"
-                        <?php $__currentLoopData = $post->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postTag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if( $postTag->id == $tag->id): ?>
-                                <?php echo e('selected'); ?>
-
-                            <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    ><?php echo e($tag->name); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
-            </div>
-            <!-- add category-->
-            <div class="card-body">
-                <label>Add category</label>
-                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
-                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($category->id); ?>"
-                        <?php $__currentLoopData = $post->categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if( $postCategory->id == $category->id): ?>
-                                <?php echo e('selected'); ?>
-
-                            <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
-                    ><?php echo e($category->name); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
-            </div>
-                <!-- /.form-group -->
-                   <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Write something</h1>
-                        </div>
+                    <div class="form-group">
+                        <label for="subtitle">SubTitle</label>
+                        <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="SubTitle" value="<?php echo e($post->subtitle); ?>">
                     </div>
-                </div>
-                <!-- /.container-fluid -->
-            </section>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-outline card-info">
-                            <div class="card-header">
-                                <!-- tools box -->
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                                <!-- /. tools -->
+                    <div class="form-group">
+                        <label for="slug">Slug</label>
+                        <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug" value="<?php echo e($post->slug); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="image" id="image">
+                                <label class="custom-file-label" for="image">Choose file</label>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body pad">
-                                <div class="mb-3">
-                                    <textarea class="textarea" placeholder="Place some text here" name="body" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo e($post->body); ?></textarea>
-                                </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="">Upload</span>
                             </div>
                         </div>
                     </div>
-                    <!-- /.col-->
+                    <div class="checkbox">
+                        <label >
+                            <input type="checkbox"  name="status" value="1" <?php if($post->status == 1): ?> <?php echo e('checked'); ?> <?php endif; ?>>Publish
+                        </label>
+                    </div>
                 </div>
-                <!-- ./row -->
-            </section>
-            <!-- /.content -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a type="button" class="btn btn-warning" href="<?php echo e(route('post.index')); ?>">Back</a>
-            </div>
+                <!-- /.card-body -->
+                <!-- add tag-->
+                <div  class="card-body">
+                    <label>Add tag</label>
+                    <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                    <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($tag->id); ?>"
+                            <?php $__currentLoopData = $post->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postTag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if( $postTag->id == $tag->id): ?>
+                                    <?php echo e('selected'); ?>
+
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        ><?php echo e($tag->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
+                <!-- add category-->
+                <div class="card-body">
+                    <label>Add category</label>
+                    <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($category->id); ?>"
+                            <?php $__currentLoopData = $post->categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if( $postCategory->id == $category->id): ?>
+                                    <?php echo e('selected'); ?>
+
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
+                        ><?php echo e($category->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
+                    <!-- /.form-group -->
+                    <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Write something</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                    <!-- tools box -->
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /. tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body pad">
+                                    <div class="mb-3">
+                                        <textarea class="textarea" placeholder="Place some text here" name="body" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo e($post->body); ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-->
+                    </div>
+                    <!-- ./row -->
+                </section>
+                <!-- /.content -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-warning" href="<?php echo e(route('post.index')); ?>">Back</a>
+                </div>
             </form>
         </div>
         <!-- /.card -->

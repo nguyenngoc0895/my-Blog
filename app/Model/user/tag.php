@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class tag extends Model
 {
     public function posts(){
-        return $this->belongsToMany('App\Model\user\post', 'post_tag');
+        return $this->belongsToMany('App\Model\user\post', 'post_tags')->paginate(4);
+    }
+
+    public function getRouteKeyName(){
+        return 'slug';
     }
 }

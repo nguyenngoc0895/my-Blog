@@ -1,64 +1,44 @@
+<?php echo $__env->make('user.inc.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
 <?php $__env->startSection('content'); ?>
-    hello
-<?php $__env->stopSection(); ?>
-
-
-
-<!-- <div class="container">
+        <!-- Main Content -->
+    <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Man must explore, and this is exploration at its greatest
-              </h2>
-              <h3 class="post-subtitle">
-                Problems look mighty small from 150 miles up
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on September 24, 2018</p>
-          </div>
-          <hr>
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-              </h2>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on September 18, 2018</p>
-          </div>
-          <hr>
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Science has not yet mastered prophecy
-              </h2>
-              <h3 class="post-subtitle">
-                We predict too much for the next year and yet far too little for the next ten.
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on August 24, 2018</p>
-          </div>
-          <hr>
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Failure is not an option
-              </h2>
-              <h3 class="post-subtitle">
-                Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on July 8, 2018</p>
-          </div>
-          <hr>
-          
+            
+            <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="post-preview">
+                    <a href="<?php echo e(route('post', $post->slug)); ?>">
+                        <h2 class="post-title">
+                        <?php echo e($post->title); ?>
+
+                        </h2>
+                        <h3 class="post-subtitle">
+                        <?php echo e($post->subtitle); ?>
+
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by
+                        <a href="#">Start Bootstrap</a>
+                        <?php echo e($post->created_at->diffForHumans()); ?></p>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            
+            <hr>
+            <!-- Pager -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><?php echo e($posts->links()); ?></li>
+                    <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+      </div>
+    </div>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('user.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

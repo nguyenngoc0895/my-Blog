@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Category slug</label>
-                    <input type="text" class="form-control" name="slug" id="slug" placeholder="SubTitle">
+                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug">
                 </div>
             </div>
             <!-- /.card-body -->
