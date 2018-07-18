@@ -1,3 +1,6 @@
+@extends('user.layouts.app')
+
+
 <header class="masthead" style="background-image: url('user/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
@@ -11,8 +14,8 @@
     </div>
 </header>
 
- 
-<?php $__env->startSection('content'); ?>
+ {{-- main content --}}
+@section('content')
     <div class="container">
         <div class="row">
             <div class="content col-md-10 col-lg-10">
@@ -20,7 +23,7 @@
             </div>
         </div>
     </div>
-<?php $__env->stopSection(); ?>
+@endsection
 
 
 
@@ -28,5 +31,3 @@
 
 
 
-
-<?php echo $__env->make('user.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

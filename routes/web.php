@@ -25,5 +25,13 @@ Route::group(['namespace' => 'admin'], function(){
 
     //category routes
     Route::resource('admin/category', 'CategoryController');
+
+    //auth admin route
+    Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('admin-login', 'Auth\LoginController@login');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

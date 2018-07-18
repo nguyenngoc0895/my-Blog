@@ -1,18 +1,19 @@
 @extends('user.layouts.app')
 
-<header class="masthead" style="background-image: url( {{asset('user/img/post-bg.jpg')}})">
-    <div class="overlay"></div>
+
+<header class="masthead" style="background-image: url({{Storage::disk('local')->url($post->image)}})">>
     <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-            <h1>{{$post->title}}</h1>
-            <span class="subheading">{{$post->subtitle}}</span>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>{{$post->title}}</h1>
+                    <span class="subheading">{{$post->subtitle}}</span>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
     </div>
 </header>
+
  {{-- main content --}}
 @section('content')
     <div class="container">

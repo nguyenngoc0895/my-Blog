@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AdminLTE 3 | Log in</title>
+        <title>My Blog | Log in</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,9 +13,9 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css')}}">
         <!-- iCheck -->
-        <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
+        <link rel="stylesheet" href="{{ asset('admin/plugins/iCheck/square/blue.css')}}">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
@@ -24,20 +24,21 @@
         <div class="login-box">
             <div class="login-logo">
                 <a href="../../index2.html">
-                    <b>Admin</b>LTE</a>
+                    <b>Admin</b> My Blog</a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Sign in to start your session</p>
-
-                    <form action="../../index2.html" method="post">
+                    @include('includes.messages')
+                    <form action="{{ route('admin.login')}}" method="post">
+                    {{ csrf_field() }}
                         <div class="form-group has-feedback">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" name="email" placeholder="Email">
                             <span class="fa fa-envelope form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" name="password" placeholder="Password">
                             <span class="fa fa-lock form-control-feedback"></span>
                         </div>
                         <div class="row">
@@ -56,17 +57,6 @@
                         </div>
                     </form>
 
-                    <div class="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fa fa-facebook mr-2"></i> Sign in using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fa fa-google-plus mr-2"></i> Sign in using Google+
-                        </a>
-                    </div>
-                    <!-- /.social-auth-links -->
-
                     <p class="mb-1">
                         <a href="#">I forgot my password</a>
                     </p>
@@ -80,11 +70,11 @@
         <!-- /.login-box -->
 
         <!-- jQuery -->
-        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <script src="{{ asset('admin/plugins/jquery/jquery.min.js')}}"></script>
         <!-- Bootstrap 4 -->
-        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <!-- iCheck -->
-        <script src="../../plugins/iCheck/icheck.min.js"></script>
+        <script src="{{ asset('admin/plugins/iCheck/icheck.min.js')}}"></script>
         <script>
             $(function () {
                 $('input').iCheck({
