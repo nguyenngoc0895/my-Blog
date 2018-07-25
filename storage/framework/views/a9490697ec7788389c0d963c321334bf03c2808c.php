@@ -48,6 +48,18 @@
                     <p>User</p>
                 </a>
                 </li>
+                <li class="nav-item">
+                <a href="<?php echo e(route('role.index')); ?>" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>Role</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="<?php echo e(route('permisson.index')); ?>" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>Permissions</p>
+                </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
