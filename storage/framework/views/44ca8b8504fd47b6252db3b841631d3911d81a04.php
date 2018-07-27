@@ -17,13 +17,13 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Tag slug</label>
-                    <input type="text" class="form-control" name="slug" id="slug" placeholder="SubTitle">
+                    <input type="text" class="form-control" name="slug" id="slug" placeholder="slug">
                 </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
-            <a type="button" class="btn btn-warning" href="<?php echo e(route('tag.index')); ?>">Back</a>
+                <a type="button" class="btn btn-warning" href="<?php echo e(route('tag.index')); ?>">Back</a>
             </div>
             </form>
         </div>

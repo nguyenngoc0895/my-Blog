@@ -55,7 +55,7 @@
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route('permisson.index')}}" class="nav-link">
+                <a href="{{ route('permission.index')}}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Permissions</p>
                 </a>

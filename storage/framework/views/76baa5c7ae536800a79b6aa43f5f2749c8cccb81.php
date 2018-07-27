@@ -14,7 +14,7 @@
             <?php echo $__env->make('includes.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo e(route('post.store')); ?>" method="POST">
+            <form role="form" action="<?php echo e(route('post.store')); ?>" method="POST" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
             <div class="card-body">

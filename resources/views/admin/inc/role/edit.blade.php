@@ -17,6 +17,61 @@
                         <label for="name">Role title</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Role" value="{{ $role->name}}">
                     </div>
+                    {{-- add permission --}}
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label for="name">Post Permission</label>
+                            @foreach ($permissions as $permission )
+                                @if ($permission->for == 'post')
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="permission[]" value="{{ $permission->id }}"
+                                            @foreach ($role->permissions as $role_permit)
+                                                @if ($role_permit->id == $permission->id)
+                                                    'checked'
+                                                @endif
+                                            @endforeach
+                                            >{{ $permission->name}}
+                                        </label>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="name">User Permission</label>
+                            @foreach ($permissions as $permission )
+                                @if ($permission->for == 'user')
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="permission[]" value="{{ $permission->id }}"
+                                            @foreach ($role->permissions as $role_permit)
+                                                @if ($role_permit->id == $permission->id)
+                                                    'checked'
+                                                @endif
+                                            @endforeach
+                                            >{{ $permission->name}}
+                                        </label>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="name">Other Permission</label>
+                            @foreach ($permissions as $permission )
+                                @if ($permission->for == 'other')
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="permission[]" value="{{ $permission->id }}"
+                                            @foreach ($role->permissions as $role_permit)
+                                                @if ($role_permit->id == $permission->id)
+                                                    'checked'
+                                                @endif
+                                            @endforeach
+                                            >{{ $permission->name}}
+                                        </label>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    {{-- add permission --}}
                 </div>
             <!-- /.card-body -->
             <div class="card-footer">
