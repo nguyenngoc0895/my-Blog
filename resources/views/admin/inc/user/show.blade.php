@@ -33,7 +33,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Table With Full Features</h3>
-            
+            @include('includes.messages')
         </div>
         
         <!-- /.card-header -->
@@ -43,6 +43,8 @@
             <tr>
                 <th>S.No</th>
                 <th>User Name</th>
+                <th>Assigned Roles</th>
+                <th>AStatus</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -52,6 +54,12 @@
                     <tr>
                         <td>{{ $loop->index + 1}}</td>
                         <td>{{ $user->name }}</td>
+                        <td>
+                            @foreach ($user->roles as $role)
+                                {{ $role->name}} |
+                            @endforeach
+                        </td>
+                        <td>{{ $user->status? 'Active' : 'Not Active' }}</td>
                         <td><a href="{{ route('user.edit', $user->id) }}"><ion-icon name="create"></ion-icon></span></a></td>
                         <td>
                             <form id="delete-form-{{ $user->id }}" method="post" action="{{ route('user.destroy', $user->id) }}" style="display:none">
@@ -76,6 +84,8 @@
             <tr>
                 <th>S.No</th>
                 <th>User Name</th>
+                <th>Assigned Roles</th>
+                <th>Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
