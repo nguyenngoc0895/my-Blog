@@ -129,9 +129,19 @@ trait AuthenticatesUsers
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
+        // throw ValidationException::withMessages([
+        //     $this->username() => [trans('auth.failed')],
+        // ]);
+        $fields = $this->credentials($request);
+        if ($fields['email'] == 'inactive'){
+            $errors = $fields['password'];
+        }else{
+            $errors = [$this->username() => trans('auth.failed')];
+        }
+
+        return redirect()->back()
+        ->withInput($request->only($this->username(), 'remember'))
+        ->withErrors($errors);
     }
 
     /**

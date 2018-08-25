@@ -7,6 +7,8 @@ use App\Model\user\post;
 use App\Model\user\tag;
 use App\Model\user\category;
 use App\Http\Controllers\Controller;
+use App\Policies\PostPolicy;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -38,9 +40,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags = tag::all();
-        $categories = category::all();
-        return view('admin.inc.post.post', compact('tags', 'categories'));
+        if (Auth::user()->can('posts.update')){
+            $tags = tag::all();
+            $categories = category::all();
+            return view('admin.inc.post.post', compact('tags', 'categories'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -92,10 +97,13 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = post::with('tags', 'categories')->where('id', $id)->first();
-        $tags = tag::all();
-        $categories = category::all();
-        return view('admin.inc.post.editpost', compact('post', 'tags', 'categories'));
+        if (Auth::user()->can('posts.edit')){
+            $post = post::with('tags', 'categories')->where('id', $id)->first();
+            $tags = tag::all();
+            $categories = category::all();
+            return view('admin.inc.post.editpost', compact('post', 'tags', 'categories'));
+        }
+        return redirect( route('admin.home'));
     }
 
     /**
@@ -107,7 +115,6 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $this -> validate( $request, [
             'title' => 'required',
             'subtitle' => 'required',

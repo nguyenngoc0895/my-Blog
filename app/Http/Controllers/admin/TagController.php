@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Model\user\tag;
+use App\Model\admin\admin;
 use App\Http\Controllers\Controller;
 
 class TagController extends Controller
@@ -16,6 +17,7 @@ class TagController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->middleware('can:posts.tag');
     }
     /**
      * Display a listing of the resource.

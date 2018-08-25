@@ -11,14 +11,16 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1>Blank Page</h1>
+            <h1>Blank Page</h1>
         </div>
         <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Blank Page</li>
-        </ol>
-        <a class="col-lg-offset-4 btn btn-success" href="<?php echo e(route('post.create')); ?>">Add new post</a>
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Blank Page</li>
+            </ol>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.create', Auth::user())): ?>
+                <a class="col-lg-offset-4 btn btn-success" href="<?php echo e(route('post.create')); ?>">Add new post</a>
+            <?php endif; ?>
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -44,8 +46,12 @@
                 <th>Sub title</th>
                 <th>Slug</th>
                 <th>Create at</th>
-                <th>Edit</th>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.update', Auth::user())): ?>
+                    <th>Edit</th>
+                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.delete', Auth::user())): ?>    
                 <th>Delete</th>
+                <?php endif; ?>
             </tr>
             </thead>
             <tbody>
@@ -56,25 +62,31 @@
                         <td><?php echo e($post->subtitle); ?></td>
                         <td><?php echo e($post->slug); ?></td>
                         <td><?php echo e($post->created_at); ?></td>
-                        <td><a href="<?php echo e(route('post.edit', $post->id)); ?>"><ion-icon name="create"></ion-icon></span></a></td>
-                        <td>
-                            <form id="delete-form-<?php echo e($post->id); ?>" method="post" action="<?php echo e(route('post.destroy', $post->id)); ?>" style="display:none">
-                                <?php echo e(csrf_field()); ?>
+                        <!-- authorization editor -->
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.update', Auth::user())): ?>
+                            <td><a href="<?php echo e(route('post.edit', $post->id)); ?>"><ion-icon name="create"></ion-icon></span></a></td>
+                        <?php endif; ?>
+                        <!-- authorization delete -->
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.delete', Auth::user())): ?>
+                            <td>
+                                <form id="delete-form-<?php echo e($post->id); ?>" method="post" action="<?php echo e(route('post.destroy', $post->id)); ?>" style="display:none">
+                                    <?php echo e(csrf_field()); ?>
 
-                                <?php echo e(method_field('DELETE')); ?>
+                                    <?php echo e(method_field('DELETE')); ?>
 
-                            </form>
-                            <a href="" onclick="
-                            if( confirm('Mày có chắc với quyết định của mày không?')){
-                                event.preventDefault();
-                                document.getElementById('delete-form-<?php echo e($post->id); ?>').submit();
-                            }
-                            else{
-                                event.preventDefault();
-                            }    
-                            ">
-                            <ion-icon name="trash"></ion-icon></a> 
-                        </td>
+                                </form>
+                                <a href="" onclick="
+                                if( confirm('Mày có chắc với quyết định của mày không?')){
+                                    event.preventDefault();
+                                    document.getElementById('delete-form-<?php echo e($post->id); ?>').submit();
+                                }
+                                else{
+                                    event.preventDefault();
+                                }    
+                                ">
+                                <ion-icon name="trash"></ion-icon></a> 
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
@@ -85,8 +97,12 @@
                 <th>Sub title</th>
                 <th>Slug</th>
                 <th>Create at</th>
-                <th>Edit</th>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.update', Auth::user())): ?>
+                    <th>Edit</th>
+                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.delete', Auth::user())): ?>    
                 <th>Delete</th>
+                <?php endif; ?>
             </tr>
             </tfoot>
             </table>

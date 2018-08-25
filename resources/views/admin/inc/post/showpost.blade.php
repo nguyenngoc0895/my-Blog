@@ -13,14 +13,16 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1>Blank Page</h1>
+            <h1>Blank Page</h1>
         </div>
         <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Blank Page</li>
-        </ol>
-        <a class="col-lg-offset-4 btn btn-success" href="{{ route('post.create')}}">Add new post</a>
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Blank Page</li>
+            </ol>
+            @can('posts.create', Auth::user())
+                <a class="col-lg-offset-4 btn btn-success" href="{{ route('post.create')}}">Add new post</a>
+            @endcan
         </div>
     </div>
     </div><!-- /.container-fluid -->
@@ -46,8 +48,12 @@
                 <th>Sub title</th>
                 <th>Slug</th>
                 <th>Create at</th>
-                <th>Edit</th>
+                @can('posts.update', Auth::user())
+                    <th>Edit</th>
+                @endcan
+                @can('posts.delete', Auth::user())    
                 <th>Delete</th>
+                @endcan
             </tr>
             </thead>
             <tbody>
@@ -58,23 +64,29 @@
                         <td>{{ $post->subtitle }}</td>
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->created_at }}</td>
-                        <td><a href="{{ route('post.edit', $post->id) }}"><ion-icon name="create"></ion-icon></span></a></td>
-                        <td>
-                            <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy', $post->id) }}" style="display:none">
-                                {{ csrf_field()}}
-                                {{ method_field('DELETE')}}
-                            </form>
-                            <a href="" onclick="
-                            if( confirm('Mày có chắc với quyết định của mày không?')){
-                                event.preventDefault();
-                                document.getElementById('delete-form-{{ $post->id}}').submit();
-                            }
-                            else{
-                                event.preventDefault();
-                            }    
-                            ">
-                            <ion-icon name="trash"></ion-icon></a> 
-                        </td>
+                        <!-- authorization editor -->
+                        @can('posts.update', Auth::user())
+                            <td><a href="{{ route('post.edit', $post->id) }}"><ion-icon name="create"></ion-icon></span></a></td>
+                        @endcan
+                        <!-- authorization delete -->
+                        @can('posts.delete', Auth::user())
+                            <td>
+                                <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy', $post->id) }}" style="display:none">
+                                    {{ csrf_field()}}
+                                    {{ method_field('DELETE')}}
+                                </form>
+                                <a href="" onclick="
+                                if( confirm('Mày có chắc với quyết định của mày không?')){
+                                    event.preventDefault();
+                                    document.getElementById('delete-form-{{ $post->id}}').submit();
+                                }
+                                else{
+                                    event.preventDefault();
+                                }    
+                                ">
+                                <ion-icon name="trash"></ion-icon></a> 
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>
@@ -85,8 +97,12 @@
                 <th>Sub title</th>
                 <th>Slug</th>
                 <th>Create at</th>
-                <th>Edit</th>
+                @can('posts.update', Auth::user())
+                    <th>Edit</th>
+                @endcan
+                @can('posts.delete', Auth::user())    
                 <th>Delete</th>
+                @endcan
             </tr>
             </tfoot>
             </table>

@@ -66,15 +66,16 @@ class LoginController extends Controller
 
     protected function credentials(Request $request)
     {
-        $admin = admin::where('email', $request->email)->first();
-        if (count($admin)){
-            if ($admin->status == 0){
-                return [ 'email'=>'inactive', 'password'=>'Mày không được vào, muốn vào thì đưa tiền đây'];
+        $admin = admin::where('email',$request->email)->first();
+        if (count($admin)) {
+            if ($admin->status == 0) {
+                return ['email'=>'inactive','password'=>'Gọi anh đi tao cho vào =))'];
             }else{
-                return ['email'=>$request->email, 'password'=>$request->password, 'status'=>1];
+                return ['email'=>$request->email,'password'=>$request->password,'status'=>1];
             }
         }
         return $request->only($this->username(), 'password');
     }
+
 
 }

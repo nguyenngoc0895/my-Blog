@@ -30,18 +30,22 @@
                     <p>Posts</p>
                 </a>
                 </li>
-                <li class="nav-item">
-                <a href="<?php echo e(route('category.index')); ?>" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Categories</p>
-                </a>
-                </li>
-                <li class="nav-item">
-                <a href="<?php echo e(route('tag.index')); ?>" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Tags</p>
-                </a>
-                </li>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.category', Auth::user())): ?>
+                    <li class="nav-item">
+                    <a href="<?php echo e(route('category.index')); ?>" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Categories</p>
+                    </a>
+                    </li>
+                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('posts.tag', Auth::user())): ?>
+                    <li class="nav-item">
+                    <a href="<?php echo e(route('tag.index')); ?>" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>Tags</p>
+                    </a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                 <a href="<?php echo e(route('user.index')); ?>" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>

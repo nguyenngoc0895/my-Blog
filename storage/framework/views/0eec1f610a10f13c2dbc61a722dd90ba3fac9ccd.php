@@ -21,6 +21,7 @@
                     <p class="post-meta">Posted by
                         <a href="#">Start Bootstrap</a>
                         <?php echo e($post->created_at->diffForHumans()); ?></p>
+                        <i class="fas fa-thumbs-up"></i>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             

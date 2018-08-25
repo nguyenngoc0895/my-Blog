@@ -10,6 +10,15 @@ use App\Model\admin\Permission;
 class RoleController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -68,7 +77,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $permissions =Permission::all();
+        $permissions = Permission::all();
         $role = role::find($id);
         return view('admin.inc.role.edit', compact('role', 'permissions'));
     }
